@@ -1,16 +1,30 @@
-import { useState, useEffect } from 'react';
-import { ExternalLink, ZoomIn, X, ChevronUp } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { ExternalLink, ZoomIn, X, ChevronUp, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products, categories, Category, Product } from './data';
 
 export default function App() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter products based on search query
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery.trim()) return products;
+    const query = searchQuery.toLowerCase();
+    return products.filter(
+      (p) =>
+        p.title.toLowerCase().includes(query) ||
+        p.summary.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
 
   // Filter out empty categories
-  const activeCategories = categories.filter(
-    (cat) => products.some((p) => p.category === cat)
-  );
+  const activeCategories = useMemo(() => {
+    return categories.filter((cat) =>
+      filteredProducts.some((p) => p.category === cat)
+    );
+  }, [filteredProducts]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,37 +47,72 @@ export default function App() {
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 uppercase" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
             Zardoz équipement
           </h1>
-          <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium mb-10">
             Équipements civils pour l’autonomie et la résilience des foyers face aux crises du quotidien (pannes, intempéries, ruptures logistiques). 
             <span className="block mt-2 text-emerald-400 font-semibold">100 % légaux – non militaires.</span>
           </p>
+
+          {/* Search Bar */}
+          <div className="max-w-xl mx-auto relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-stone-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Rechercher un équipement..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-stone-800 border border-stone-700 text-stone-100 rounded-full py-3 pl-12 pr-12 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-stone-500"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-stone-400 hover:text-stone-200"
+                aria-label="Effacer la recherche"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
-        {activeCategories.map((category) => {
-          const categoryProducts = products.filter((p) => p.category === category);
-          
-          return (
-            <section key={category} id={`category-${category.toLowerCase()}`} className="mb-20 scroll-mt-8">
-              <div className="flex items-center gap-4 mb-10">
-                <h2 className="text-3xl font-bold uppercase tracking-wide text-stone-800">{category}</h2>
-                <div className="h-px bg-stone-300 flex-1"></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {categoryProducts.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    onZoom={() => setZoomedImage(product.imageUrl)} 
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
+        {activeCategories.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-xl text-stone-500">Aucun équipement ne correspond à votre recherche.</p>
+            <button 
+              onClick={() => setSearchQuery('')}
+              className="mt-4 text-emerald-600 font-semibold hover:underline"
+            >
+              Effacer la recherche
+            </button>
+          </div>
+        ) : (
+          activeCategories.map((category) => {
+            const categoryProducts = filteredProducts.filter((p) => p.category === category);
+            
+            return (
+              <section key={category} id={`category-${category.toLowerCase()}`} className="mb-20 scroll-mt-8">
+                <div className="flex items-center gap-4 mb-10">
+                  <h2 className="text-3xl font-bold uppercase tracking-wide text-stone-800">{category}</h2>
+                  <div className="h-px bg-stone-300 flex-1"></div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {categoryProducts.map((product) => (
+                    <ProductCard 
+                      key={product.id} 
+                      product={product} 
+                      onZoom={() => setZoomedImage(product.imageUrl)} 
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })
+        )}
       </main>
 
       {/* Footer */}
