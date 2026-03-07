@@ -13,7 +13,8 @@ export const categories: Category[] = [
   'Energie',
   'Eclairage',
   'Alimentation',
-  'Lecture'
+  'Lecture',
+  'Divers'
 ];
 
 export const products: Product[] = [
@@ -152,5 +153,13 @@ export const products: Product[] = [
     imageUrl: '/public/images/Lchaillot-1.jpg',
     amazonLink: 'https://www.amazon.fr/Lautonomie-%C3%A9nerg%C3%A9tique-photovolta%C3%AFques-Barnab%C3%A9-Chaillot/dp/2501170261?tag=zequipement-21&th=1',
     category: 'Lecture'
+  },
+  {
+    id: '18',
+    title: 'MOUNTAINTOP Sac à dos',
+    summary: ' Sac à dos de randonnée 40 l idéal pour une évacuation réussie.',
+    imageUrl: '/public/images/sacados.jpg',
+    amazonLink: 'https://www.amazon.fr/MOUNTAINTOP-randon%C3%A9e-Trekking-Camping-Alpinisme/dp/B07SJKTV2G?tag=zequipement-21&th=1',
+    category: 'Divers'
   }
 ];
