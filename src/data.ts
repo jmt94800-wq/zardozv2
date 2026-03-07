@@ -1,4 +1,4 @@
-export type Category = 'Energie' | 'Eclairage' | 'Alimentation' | 'Divers' | 'Lecture';
+export type Category = 'Energie' | 'Eclairage' | 'Alimentation' | 'Lecture' | 'Divers' ;
 
 export interface Product {
   id: string;
@@ -13,7 +13,6 @@ export const categories: Category[] = [
   'Energie',
   'Eclairage',
   'Alimentation',
-  'Divers',
   'Lecture'
 ];
 
@@ -135,7 +134,7 @@ export const products: Product[] = [
     title: 'Résilience! L\'eau - Manuel Pratique',
     summary: 'Manuel survivaliste 100% pratique dédié entièrement au sujet fondamental de l’eau.',
     imageUrl: '/public/images/Leau.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/2501170261?tag=zequipement-21&th=1',
+    amazonLink: 'https://www.amazon.fr/R%C3%A9silience-Leau-Pratique-Collecter-Transporter/dp/B09FS5FV2M?tag=zequipement-21&th=1',
     category: 'Lecture'
   },
   {
