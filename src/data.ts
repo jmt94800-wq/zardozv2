@@ -138,11 +138,19 @@ export const products: Product[] = [
     category: 'Lecture'
   },
   {
+    id: 'p17',
+    title: 'Merrell Homme Moab 3',
+    summary: 'Excellente chaussures de randonnée.',
+    imageUrl: '/public/images/Lchaillot.jpg',
+    amazonLink: 'https://www.amazon.fr/dp/B09TTMVD4X?tag=zequipement-21&th=1',
+    category: 'Divers'
+  },
+  {
     id: 'p16',
     title: 'L\'autonomie énergétique: Les panneaux photovoltaïques',
     summary: 'Ce livre vous guide, pas-à-pas, dans votre quête d’autonomie électrique.',
     imageUrl: '/public/images/Lchaillot.jpg',
     amazonLink: 'https://www.amazon.fr/dp/2501170261?tag=zequipement-21&th=1',
-    category: 'Lecture'
+    category: 'Divers'
   }
 ];
