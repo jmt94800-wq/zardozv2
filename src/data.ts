@@ -142,7 +142,7 @@ export const products: Product[] = [
     id: '16',
     title: 'Merrell Homme Moab 3',
     summary: 'Excellente chaussures de randonnée.',
-    imageUrl: '/public/images/merell.jpg',
+    imageUrl: '/images/merell.jpg',
     amazonLink: 'https://www.amazon.fr/dp/B09TTMVD4X?tag=zequipement-21&th=1',
     category: 'Divers'
   },
@@ -150,7 +150,7 @@ export const products: Product[] = [
     id: '17',
     title: 'L\'autonomie énergétique',
     summary: 'Indépendance énergétique!',
-    imageUrl: '/public/images/Lchaillot-1.jpg',
+    imageUrl: '/images/Lchaillot-1.jpg',
     amazonLink: 'https://www.amazon.fr/Lautonomie-%C3%A9nerg%C3%A9tique-photovolta%C3%AFques-Barnab%C3%A9-Chaillot/dp/2501170261?tag=zequipement-21&th=1',
     category: 'Lecture'
   },
@@ -158,7 +158,7 @@ export const products: Product[] = [
     id: '18',
     title: 'MOUNTAINTOP Sac à dos',
     summary: ' Sac à dos de randonnée 40 l idéal pour une évacuation réussie.',
-    imageUrl: '/public/images/sacados.jpg',
+    imageUrl: '/images/sacados.jpg',
     amazonLink: 'https://www.amazon.fr/MOUNTAINTOP-randon%C3%A9e-Trekking-Camping-Alpinisme/dp/B07SJKTV2G?tag=zequipement-21&th=1',
     category: 'Divers'
   }
