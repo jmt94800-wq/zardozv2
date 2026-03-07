@@ -125,9 +125,25 @@ export const products: Product[] = [
   {
     id: 'p14',
     title: 'Pâte combustible HENDI',
-    summary: 'Cette Pâte Combustible pour Chafing Dish en Boîte. Le lot se compose de 12 boîtes de 200 g pour une durée de combustion de 3h..',
+    summary: 'Cette Pâte Combustible pour Chafing Dish en Boîte. Le lot se compose de 12 boîtes de 200 g pour une durée de combustion de 3h.',
     imageUrl: '/images/pate.jpg',
     amazonLink: 'https://www.amazon.fr/dp/B09GPS4SQN?tag=zequipement-21&th=1',
     category: 'Divers'
+  },
+  {
+    id: 'p15',
+    title: 'Résilience! L\'eau - Manuel Pratique',
+    summary: 'Manuel survivaliste 100% pratique dédié entièrement au sujet fondamental de l’eau.',
+    imageUrl: '/public/images/Leau.jpg',
+    amazonLink: 'https://www.amazon.fr/dp/2501170261?tag=zequipement-21&th=1',
+    category: 'Lecture'
+  },
+  {
+    id: 'p16',
+    title: 'L\'autonomie énergétique: Les panneaux photovoltaïques',
+    summary: 'Ce livre vous guide, pas-à-pas, dans votre quête d’autonomie électrique.',
+    imageUrl: '/public/images/Lchaillot.jpg',
+    amazonLink: 'https://www.amazon.fr/dp/2501170261?tag=zequipement-21&th=1',
+    category: 'Lecture'
   }
 ];
