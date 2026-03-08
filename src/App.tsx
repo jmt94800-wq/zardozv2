@@ -1,10 +1,18 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ExternalLink, ZoomIn, X, ChevronUp, Search } from 'lucide-react';
+import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products, categories, Category, Product } from './data';
 
+function getYouTubeVideoId(url: string | undefined): string | null {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+
 export default function App() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -106,6 +114,7 @@ export default function App() {
                       key={product.id} 
                       product={product} 
                       onZoom={() => setZoomedImage(product.imageUrl)} 
+                      onPlayVideo={(videoId) => setActiveVideoId(videoId)}
                     />
                   ))}
                 </div>
@@ -196,11 +205,52 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideoId && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/90 backdrop-blur-sm p-4"
+            onClick={() => setActiveVideoId(null)}
+          >
+            <button 
+              className="absolute top-6 right-6 text-stone-400 hover:text-white transition-colors"
+              onClick={() => setActiveVideoId(null)}
+              aria-label="Fermer la vidéo"
+            >
+              <X size={32} />
+            </button>
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=0&modestbranding=1&rel=0`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-function ProductCard({ product, onZoom }: { key?: string, product: Product, onZoom: () => void }) {
+function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: Product, onZoom: () => void, onPlayVideo: (videoId: string) => void }) {
+  const videoId = getYouTubeVideoId(product.videoUrl);
+
   return (
     <motion.article 
       initial={{ opacity: 0, y: 20 }}
@@ -232,16 +282,30 @@ function ProductCard({ product, onZoom }: { key?: string, product: Product, onZo
           {product.summary}
         </p>
         
-        {/* Amazon Action Button */}
-        <a 
-          href={product.amazonLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 w-full bg-amber-400 hover:bg-amber-500 text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors shadow-sm"
-        >
-          <span>Voir sur Amazon</span>
-          <ExternalLink size={18} />
-        </a>
+        <div className="flex flex-col gap-3 mt-auto">
+          {/* Video Button */}
+          {videoId && (
+            <button
+              onClick={() => onPlayVideo(videoId)}
+              className="inline-flex items-center justify-center gap-2 w-full bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold py-2.5 px-4 rounded-xl transition-colors border border-stone-200"
+              aria-label="Voir la vidéo explicative"
+            >
+              <Play size={18} className="text-red-600" />
+              <span>Voir la vidéo</span>
+            </button>
+          )}
+
+          {/* Amazon Action Button */}
+          <a 
+            href={product.amazonLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full bg-amber-400 hover:bg-amber-500 text-stone-900 font-bold py-3 px-4 rounded-xl transition-colors shadow-sm"
+          >
+            <span>Voir sur Amazon</span>
+            <ExternalLink size={18} />
+          </a>
+        </div>
       </div>
     </motion.article>
   );
