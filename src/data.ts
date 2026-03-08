@@ -24,7 +24,7 @@ export const products: Product[] = [
     title: 'BigBlue 28W',
     summary: 'Chargeur Solaire Pliable avec 2 USB C + 1 USB A Ports(5V/4,8A au Total) Panneau Solaire Portable Imperméable IP44.',
     imageUrl: '/images/solar-panel.jpg',
-    amazonLink: 'https://www.amazon.fr/gp/aw/d/B01KGXYG14?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4sxGqMg',
     category: 'Energie',
     videoUrl: 'https://www.youtube.com/shorts/Aa2BK6vcBzA'
   },
@@ -33,7 +33,7 @@ export const products: Product[] = [
     title: 'Anker SOLIX C300 DC PowerBank',
     summary: 'Station électrique, 288 Wh (90 000 mAh) pour Plusieurs appareils, Batterie LiFePO4, générateur Solaire 300 W, Camping, Voyage et urgences.',
     imageUrl: '/images/generator.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B0D62PMB3R?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4rltIPJ',
     category: 'Energie',
     videoUrl: 'https://www.youtube.com/shorts/L6SzFPsrr5c'
   },
@@ -42,7 +42,7 @@ export const products: Product[] = [
     title: 'Nitecore NU25 MTC',
     summary: 'La lampe frontale NU25MCT offre 400 lumens (portée 132 m), une autonomie jusqu’à 45 h avec indicateur de batterie, 3 températures de couleur + modes ultra-faible (6 lumens) et rouge, le tout dans un format ultra-léger de 50 g, étanche IP66 et verrouillable.',
     imageUrl: '/images/NU25MTC.jpg',
-    amazonLink: 'https://www.amazon.fr/Nitecore-NU25-dext%C3%A9rieur-rechargeable-temp%C3%A9ratures/dp/B0F18YZ5X5?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4rhLO5a',
     category: 'Eclairage',
     videoUrl: 'https://www.youtube.com/shorts/hNM58qB3q84'
   },
@@ -51,7 +51,7 @@ export const products: Product[] = [
     title: 'Radio Portable Survie XHDATA D608WB',
     summary: 'Solaire Dynamo Survival Batterie Rechargeable 3000 mAh du Téléphone par USB Bluetooth/TF Lampe de Poche Lampe de Lecture SOS Camping Situations d\'urgence.',
     imageUrl: '/images/Radio.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B0CTMGQ2PF?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/46RmnjA',
     category: 'Eclairage',
     videoUrl: 'https://www.youtube.com/shorts/ViSxS2_9BjA'
   },
@@ -60,7 +60,7 @@ export const products: Product[] = [
     title: 'NRG-5 nourriture d\'urgence - 24 x 2300 kcal',
     summary: 'La ration de secours NRG-5 est une solution nutritionnelle complète conçue pour les situations d’urgence.',
     imageUrl: '/images/NRG5.jpg',
-    amazonLink: 'https://www.amazon.fr/NRG-5-nourriture-durgence-24x-500g/dp/B00AGUZAC2?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/3P5bpAL',
     category: 'Alimentation',
     videoUrl: 'https://www.youtube.com/shorts/yHoDRjm5YKw'
   },
@@ -69,7 +69,7 @@ export const products: Product[] = [
     title: 'GRAYL GeoPress 710 ml',
     summary: 'Filtre à eau pour l\'extérieur, Élimine 99,99% de toutes les bactéries et virus.',
     imageUrl: '/images/Grayl.jpg',
-    amazonLink: 'https://www.amazon.fr/GRAYL-Geopress-Purifier-Bottle-noir/dp/B0C1M2VZ9T?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4aY8l1X',
     category: 'Alimentation',
     videoUrl: 'https://www.youtube.com/shorts/w_3D3_Cu7fo'
   },
@@ -78,7 +78,7 @@ export const products: Product[] = [
     title: 'Survivre à l\'effondrement économique',
     summary: 'Comment se préparer ? Comment survivre à ces prochaines années de grands changements qui seront à la fois soudains, rapides et violents ? Êtes-vous prêts ?',
     imageUrl: '/images/survivre-a-l-effondrement-economique.jpg',
-    amazonLink: 'https://www.amazon.fr/Survivre-leffondrement-%C3%A9conomique-Piero-Giorgio/dp/2491861038?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/46ONcEX',
     category: 'Lecture',
     videoUrl: 'https://www.youtube.com/watch?v=tsYORZrfbRU'
   },
@@ -87,7 +87,7 @@ export const products: Product[] = [
     title: 'Trousse de Premiers Secours Complète LEWIS-PLAST',
     summary: 'Grande trousse de premiers secours tout usage 224 pièces.',
     imageUrl: '/images/trousse.jpg',
-    amazonLink: 'https://www.amazon.fr/Lewis-Plast-Grand-premiers-secours-pi%C3%A8ces/dp/B08XKY1QNR?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4aXDhiX',
     category: 'Divers',
     videoUrl: 'https://www.youtube.com/watch?v=r829HNMfq5M'
   },
@@ -96,7 +96,7 @@ export const products: Product[] = [
     title: 'Lepro Lampe LED',
     summary: ' Lampe Camping LED [Jusqu\'à 200h d\'éclairage ] , Lanterne Camping Puissante 1000lm, Alimentation par pile, Luminosité Réglable, Etanche, pour Camping, Bivouac, Pêche, Randonnée, Cave, 2pcs.',
     imageUrl: '/images/lanterneLepro.jpg',
-    amazonLink: 'https://www.amazon.fr/Lighting-EVER-Puissante-Luminosit%C3%A9-Eclairage/dp/B07D4GS3NL?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4bwJ7YE',
     category: 'Eclairage',
     videoUrl: 'https://www.youtube.com/watch?v=Mjur5mgo4yk'
   },
@@ -105,7 +105,7 @@ export const products: Product[] = [
     title: 'AFERIY Generateur Electrique Portable 2400W',
     summary: 'Batterie Nomade LiFePO4, Charge en 1,5H, Prise UE 220-240V, Fonction UPS, Station électrique Portable pour Camping/Maison/Bureau, Garantie 7 Ans.',
     imageUrl: '/images/generator2.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B0FGD89DRZ?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/3Nqds1R',
     category: 'Energie',
     videoUrl: 'https://www.youtube.com/shorts/Fra8mGcbMOg'
   },
@@ -114,7 +114,7 @@ export const products: Product[] = [
     title: 'ECO-WORTHY Bluetooth 280A',
     summary: 'Batterie Lithium 12V 280AH LiFePO4 avec BMS Protection, Plus de 6000 Cycles, 3584Wh Batterie Lithium pour Camping-Car, Bateau, Système Solaire, Maison, Panneau Solaire',
     imageUrl: '/images/batterie.jpg',
-    amazonLink: 'https://www.amazon.fr/ECO-WORTHY-Bluetooth-Batterie-Protection-Camping-Car/dp/B0DB7VBZ7J?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4liMPZo',
     category: 'Energie',
     videoUrl: 'https://youtu.be/QxkUG6bzs7I'
   },
@@ -123,7 +123,7 @@ export const products: Product[] = [
     title: 'Filtre à Eau Sawyer Mini',
     summary: 'Filtre à eau pour l\'extérieur, Élimine 99,99% de toutes les bactéries et virus.',
     imageUrl: '/images/sawyer-water-filter-1.jpg',
-    amazonLink: 'https://www.amazon.fr/Sawyer-MINI-Filtre-eau-filtration/dp/B00FA2RLX2?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/47jfuHO',
     category: 'Alimentation',
     videoUrl: 'https://www.youtube.com/shorts/yXcgoJJtyoY'
   },
@@ -132,7 +132,7 @@ export const products: Product[] = [
     title: 'Rues Barbares : survivre en ville',
     summary: 'Comment survivre en ville ? Si vous ne lisez pas ce livre, nous ne donnons pas cher de votre peau de citadin !',
     imageUrl: '/images/rue-barbare.jpg',
-    amazonLink: 'https://www.amazon.fr/Rues-Barbares-survivre-%C3%A9dition-actualis%C3%A9e/dp/2491861046?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/3PnBZVQ',
     category: 'Lecture',
     videoUrl: 'https://www.youtube.com/watch?v=W2ojY3Qw5_w'
   },
@@ -141,7 +141,7 @@ export const products: Product[] = [
     title: 'Pâte combustible HENDI',
     summary: 'Cette Pâte Combustible pour Chafing Dish en Boîte. Le lot se compose de 12 boîtes de 200 g pour une durée de combustion de 3h.',
     imageUrl: '/images/pate.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B09GPS4SQN?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4uhZ2kY',
     category: 'Divers',
     videoUrl: 'https://www.youtube.com/watch?v=gkMXSr_ZG3g&t=578s'
   },
@@ -150,7 +150,7 @@ export const products: Product[] = [
     title: 'Résilience! L\'eau - Manuel Pratique',
     summary: 'Manuel survivaliste 100% pratique dédié entièrement au sujet fondamental de l’eau.',
     imageUrl: '/images/Leau.jpg',
-    amazonLink: 'https://www.amazon.fr/R%C3%A9silience-Leau-Pratique-Collecter-Transporter/dp/B09FS5FV2M?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4ud7DFP',
     category: 'Lecture',
     videoUrl: 'https://www.youtube.com/shorts/sFIQbk3fBGk'
   },
@@ -159,7 +159,7 @@ export const products: Product[] = [
     title: 'Merrell Homme Moab 3',
     summary: 'Excellente chaussures de randonnée.',
     imageUrl: '/images/merell.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B09TTMVD4X?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4lhTuTC',
     category: 'Divers',
     videoUrl: 'https://www.youtube.com/watch?v=mLFOX9Rs4kE'
   },
@@ -168,7 +168,7 @@ export const products: Product[] = [
     title: 'L\'autonomie énergétique',
     summary: 'Indépendance énergétique!',
     imageUrl: '/images/Lchaillot-1.jpg',
-    amazonLink: 'https://www.amazon.fr/Lautonomie-%C3%A9nerg%C3%A9tique-photovolta%C3%AFques-Barnab%C3%A9-Chaillot/dp/2501170261?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4buE6zU',
     category: 'Lecture',
     videoUrl: 'https://www.youtube.com/watch?v=shDxHwS4H5s'
   },
@@ -177,7 +177,7 @@ export const products: Product[] = [
     title: 'MOUNTAINTOP Sac à dos',
     summary: 'Sac à dos de randonnée 40 l idéal pour une évacuation réussie.',
     imageUrl: '/images/sacados.jpg',
-    amazonLink: 'https://www.amazon.fr/MOUNTAINTOP-randon%C3%A9e-Trekking-Camping-Alpinisme/dp/B07SJKTV2G?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4bhieH2',
     category: 'Divers',
     videoUrl: 'https://www.youtube.com/watch?v=1cTlsnusmsU'
   },
@@ -186,8 +186,17 @@ export const products: Product[] = [
     title: 'Butoir de porte alarme',
     summary: 'Petit système de blocage de porte (portable et réglable) avec alarme, 80 dB, pour la maison, l\'hôtel, les évacuations.',
     imageUrl: '/images/blocporte.jpg',
-    amazonLink: 'https://www.amazon.fr/dp/B0FQ5ZD8JQ?tag=zequipement-21&th=1',
+    amazonLink: 'https://amzn.to/4blloJY',
     category: 'Divers',
     videoUrl: 'https://www.youtube.com/shorts/i6T69cakDdI'
+  },
+  {
+    id: '20',
+    title: 'Victron Energy MPPT 100V 30 amp 12/24-Volt (Bluetooth)',
+    summary: 'Régulateur MPPT pour recharger une batterie avec un panneau solaire.',
+    imageUrl: '/images/victron.jpg',
+    amazonLink: 'https://amzn.to/4bhP0Yt',
+    category: 'Energie',
+    videoUrl: 'https://www.youtube.com/shorts/t5f-7bHHw2o'
   }
 ];
