@@ -3,16 +3,35 @@ import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products, categories, Category, Product } from './data';
 
-function getYouTubeVideoId(url: string | undefined): string | null {
+function getYouTubeVideoInfo(url: string | undefined): { id: string; start?: string } | null {
   if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  
+  // Extract video ID
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
   const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
+  const id = (match && match[2].length === 11) ? match[2] : null;
+  
+  if (!id) return null;
+
+  // Extract start time
+  let start: string | undefined;
+  try {
+    const urlObj = new URL(url);
+    const tParam = urlObj.searchParams.get('t') || urlObj.searchParams.get('start');
+    if (tParam) {
+      // Handle '578s' or '578'
+      start = tParam.replace('s', '');
+    }
+  } catch (e) {
+    // Invalid URL, ignore
+  }
+
+  return { id, start };
 }
 
 export default function App() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ id: string; start?: string } | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -114,7 +133,7 @@ export default function App() {
                       key={product.id} 
                       product={product} 
                       onZoom={() => setZoomedImage(product.imageUrl)} 
-                      onPlayVideo={(videoId) => setActiveVideoId(videoId)}
+                      onPlayVideo={(videoInfo) => setActiveVideo(videoInfo)}
                     />
                   ))}
                 </div>
@@ -208,17 +227,17 @@ export default function App() {
 
       {/* Video Modal */}
       <AnimatePresence>
-        {activeVideoId && (
+        {activeVideo && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/90 backdrop-blur-sm p-4"
-            onClick={() => setActiveVideoId(null)}
+            onClick={() => setActiveVideo(null)}
           >
             <button 
               className="absolute top-6 right-6 text-stone-400 hover:text-white transition-colors"
-              onClick={() => setActiveVideoId(null)}
+              onClick={() => setActiveVideo(null)}
               aria-label="Fermer la vidéo"
             >
               <X size={32} />
@@ -233,7 +252,7 @@ export default function App() {
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=0&modestbranding=1&rel=0`}
+                src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=0&modestbranding=1&rel=0${activeVideo.start ? `&start=${activeVideo.start}` : ''}`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -248,8 +267,8 @@ export default function App() {
   );
 }
 
-function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: Product, onZoom: () => void, onPlayVideo: (videoId: string) => void }) {
-  const videoId = getYouTubeVideoId(product.videoUrl);
+function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: Product, onZoom: () => void, onPlayVideo: (videoInfo: { id: string; start?: string }) => void }) {
+  const videoInfo = getYouTubeVideoInfo(product.videoUrl);
 
   return (
     <motion.article 
@@ -284,9 +303,9 @@ function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: 
         
         <div className="flex flex-col gap-3 mt-auto">
           {/* Video Button */}
-          {videoId && (
+          {videoInfo && (
             <button
-              onClick={() => onPlayVideo(videoId)}
+              onClick={() => onPlayVideo(videoInfo)}
               className="inline-flex items-center justify-center gap-2 w-full bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold py-2.5 px-4 rounded-xl transition-colors border border-stone-200"
               aria-label="Voir la vidéo explicative"
             >

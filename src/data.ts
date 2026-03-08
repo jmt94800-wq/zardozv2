@@ -143,7 +143,7 @@ export const products: Product[] = [
     imageUrl: '/images/pate.jpg',
     amazonLink: 'https://www.amazon.fr/dp/B09GPS4SQN?tag=zequipement-21&th=1',
     category: 'Divers',
-    videoUrl: 'https://youtube.com/clip/UgkxwL25h0P3gZiGgeVMTMlxdO7eg81-Nrz0'
+    videoUrl: 'https://www.youtube.com/watch?v=gkMXSr_ZG3g&t=578s'
   },
   {
     id: 'p15',
@@ -161,7 +161,7 @@ export const products: Product[] = [
     imageUrl: '/images/merell.jpg',
     amazonLink: 'https://www.amazon.fr/dp/B09TTMVD4X?tag=zequipement-21&th=1',
     category: 'Divers',
-    videoUrl: 'https://www.youtube.com/watch?v=KvI76k7GZ0Y'
+    videoUrl: 'https://www.youtube.com/watch?v=mLFOX9Rs4kE'
   },
   {
     id: '17',
