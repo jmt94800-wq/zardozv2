@@ -198,5 +198,14 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4bhP0Yt',
     category: 'Energie',
     videoUrl: 'https://www.youtube.com/shorts/t5f-7bHHw2o'
+  },
+  {
+    id: '21',
+    title: 'Chariot d\'évacuation',
+    summary: 'Chariot Pliable XXL de 225 l à 150 kg avec Frein et Toit.',
+    imageUrl: '/images/chariot.jpg',
+    amazonLink: 'https://amzn.to/4rqvuPB',
+    category: 'Divers',
+    videoUrl: ''
   }
 ];
