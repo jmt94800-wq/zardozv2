@@ -278,6 +278,7 @@ export const products: Product[] = [
     imageUrl: '/images/rechaud.jpg',
     amazonLink: 'https://amzn.to/3PmiWvf',
     category: 'Alimentation',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
   },
   {
@@ -287,6 +288,7 @@ export const products: Product[] = [
     imageUrl: '/images/panneau.jpg',
     amazonLink: 'https://amzn.to/41ipHkj',
     category: 'Energie',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
   }
 ];
