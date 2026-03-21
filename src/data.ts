@@ -216,5 +216,14 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3PmiWvf',
     category: 'Alimentation',
     videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
-  }  
+  },
+  {
+    id: '23',
+    title: 'Panneau solaire 400W',
+    summary: 'Pour recharger les générateurs et ta batterie de secours.',
+    imageUrl: '/images/panneau.jpg',
+    amazonLink: 'https://amzn.to/41ipHkj',
+    category: 'Energie',
+    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
+  }
 ];
