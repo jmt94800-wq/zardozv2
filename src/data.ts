@@ -233,43 +233,43 @@ export const products: Product[] = [
   },
   {
     id: '21',
-    title: 'Douche Solaire 20L',
-    summary: 'Sac de douche solaire portable pour le camping et les situations d\'urgence.',
-    imageUrl: '/images/douche-solaire.jpg',
-    amazonLink: 'https://amzn.to/3YxX8Xz',
+    title: 'Douche Sopal',
+    summary: 'Douche électrique portable pour le camping et les situations d\'urgence. Elle vous permet de faire aussi la vaisselle.',
+    imageUrl: '/images/douche.jpg',
+    amazonLink: 'https://amzn.to/3Pgn1RN',
     category: 'Hygiène',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
+    videoUrl: 'https://www.youtube.com/watch?v=5Waa_5Qe4hI'
   },
   {
     id: '22',
-    title: 'Savon de mer Sea to Summit',
-    summary: 'Savon concentré biodégradable pour le corps et la vaisselle.',
-    imageUrl: '/images/savon-mer.jpg',
-    amazonLink: 'https://amzn.to/3YxX8Xz',
-    category: 'Hygiène',
-    usage: ['Bivouac'],
-    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
+    title: 'Panneau solaire 400W',
+    summary: 'Pour recharger les générateurs et ta batterie de secours.',
+    imageUrl: '/images/panneau.jpg',
+    amazonLink: 'https://amzn.to/41ipHkj',
+    category: 'Energie',
+    usage: ['Maison'],
+    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
   },
   {
     id: '23',
     title: 'Leatherman Wave+',
     summary: 'Pince multifonction avec 18 outils essentiels.',
-    imageUrl: '/images/leatherman.jpg',
-    amazonLink: 'https://amzn.to/3YxX8Xz',
+    imageUrl: '/images/Leatherman.jpg',
+    amazonLink: 'https://amzn.to/4ss54hK',
     category: 'Outils',
     usage: ['Tous'],
-    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
+    videoUrl: 'https://www.youtube.com/shorts/gQCkQbkHx6E'
   },
   {
     id: '24',
     title: 'Scie pliante Bahco Laplander',
     summary: 'Scie compacte et robuste pour le bois et les matériaux tendres.',
     imageUrl: '/images/scie-bahco.jpg',
-    amazonLink: 'https://amzn.to/3YxX8Xz',
+    amazonLink: 'https://amzn.to/4lJBpxL',
     category: 'Outils',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
+    videoUrl: 'https://www.youtube.com/shorts/hczCV27fdlU'
   },
   {
     id: '25',
@@ -280,15 +280,5 @@ export const products: Product[] = [
     category: 'Alimentation',
     usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
-  },
-  {
-    id: '26',
-    title: 'Panneau solaire 400W',
-    summary: 'Pour recharger les générateurs et ta batterie de secours.',
-    imageUrl: '/images/panneau.jpg',
-    amazonLink: 'https://amzn.to/41ipHkj',
-    category: 'Energie',
-    usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
   }
 ];
