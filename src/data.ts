@@ -1,4 +1,5 @@
-export type Category = 'Energie' | 'Eclairage' | 'Alimentation' | 'Lecture' | 'Divers' ;
+export type Category = 'Energie' | 'Eclairage' | 'Alimentation' | 'Lecture' | 'Hygiène' | 'Communication' | 'Outils' | 'Divers' ;
+export type Usage = 'Urbain' | 'Bivouac' | 'Maison' | 'Tous' ;
 
 export interface Product {
   id: string;
@@ -7,6 +8,7 @@ export interface Product {
   imageUrl: string;
   amazonLink: string;
   category: Category;
+  usage: Usage[];
   videoUrl?: string;
 }
 
@@ -15,7 +17,17 @@ export const categories: Category[] = [
   'Eclairage',
   'Alimentation',
   'Lecture',
+  'Hygiène',
+  'Communication',
+  'Outils',
   'Divers'
+];
+
+export const usages: Usage[] = [
+  'Urbain',
+  'Bivouac',
+  'Maison',
+  'Tous'
 ];
 
 export const products: Product[] = [
@@ -26,6 +38,7 @@ export const products: Product[] = [
     imageUrl: '/images/solar-panel.jpg',
     amazonLink: 'https://amzn.to/4sxGqMg',
     category: 'Energie',
+    usage: ['Bivouac', 'Maison'],
     videoUrl: 'https://www.youtube.com/shorts/Aa2BK6vcBzA'
   },
   {
@@ -35,6 +48,7 @@ export const products: Product[] = [
     imageUrl: '/images/generator.jpg',
     amazonLink: 'https://amzn.to/4rltIPJ',
     category: 'Energie',
+    usage: ['Urbain', 'Bivouac', 'Maison'],
     videoUrl: 'https://www.youtube.com/shorts/L6SzFPsrr5c'
   },
   {
@@ -44,6 +58,7 @@ export const products: Product[] = [
     imageUrl: '/images/NU25MTC.jpg',
     amazonLink: 'https://amzn.to/4rhLO5a',
     category: 'Eclairage',
+    usage: ['Bivouac', 'Urbain'],
     videoUrl: 'https://www.youtube.com/shorts/hNM58qB3q84'
   },
   {
@@ -52,7 +67,8 @@ export const products: Product[] = [
     summary: 'Solaire Dynamo Survival Batterie Rechargeable 3000 mAh du Téléphone par USB Bluetooth/TF Lampe de Poche Lampe de Lecture SOS Camping Situations d\'urgence.',
     imageUrl: '/images/Radio.jpg',
     amazonLink: 'https://amzn.to/46RmnjA',
-    category: 'Eclairage',
+    category: 'Communication',
+    usage: ['Maison', 'Bivouac'],
     videoUrl: 'https://www.youtube.com/shorts/ViSxS2_9BjA'
   },
   {
@@ -62,6 +78,7 @@ export const products: Product[] = [
     imageUrl: '/images/NRG5.jpg',
     amazonLink: 'https://amzn.to/3P5bpAL',
     category: 'Alimentation',
+    usage: ['Maison', 'Bivouac'],
     videoUrl: 'https://www.youtube.com/shorts/yHoDRjm5YKw'
   },
   {
@@ -71,6 +88,7 @@ export const products: Product[] = [
     imageUrl: '/images/Grayl.jpg',
     amazonLink: 'https://amzn.to/4aY8l1X',
     category: 'Alimentation',
+    usage: ['Bivouac', 'Urbain'],
     videoUrl: 'https://www.youtube.com/shorts/w_3D3_Cu7fo'
   },
   {
@@ -80,6 +98,7 @@ export const products: Product[] = [
     imageUrl: '/images/survivre-a-l-effondrement-economique.jpg',
     amazonLink: 'https://amzn.to/46ONcEX',
     category: 'Lecture',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=tsYORZrfbRU'
   },
   {
@@ -89,15 +108,17 @@ export const products: Product[] = [
     imageUrl: '/images/trousse.jpg',
     amazonLink: 'https://amzn.to/4aXDhiX',
     category: 'Divers',
+    usage: ['Tous'],
     videoUrl: 'https://www.youtube.com/watch?v=r829HNMfq5M'
   },
   {
     id: 'p9',
     title: 'Lepro Lampe LED',
-    summary: 'En cas de coupure du réseau électrique, l\'éclairage est extrêmement important.',
+    summary: ' Lampe Camping LED [Jusqu\'à 200h d\'éclairage ] , Lanterne Camping Puissante 1000lm, Alimentation par pile, Luminosité Réglable, Etanche, pour Camping, Bivouac, Pêche, Randonnée, Cave, 2pcs.',
     imageUrl: '/images/lanterneLepro.jpg',
     amazonLink: 'https://amzn.to/4bwJ7YE',
     category: 'Eclairage',
+    usage: ['Bivouac', 'Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=Mjur5mgo4yk'
   },
   {
@@ -107,15 +128,17 @@ export const products: Product[] = [
     imageUrl: '/images/generator2.jpg',
     amazonLink: 'https://amzn.to/3Nqds1R',
     category: 'Energie',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/shorts/Fra8mGcbMOg'
   },
   {
     id: 'p11',
     title: 'ECO-WORTHY Bluetooth 280A',
-    summary: 'Batterie Lithium 12V 280AH LiFePO4 (Plus de 6000 Cycles) pour augmenter l\'autonomie des générateurs électrique.',
+    summary: 'Batterie Lithium 12V 280AH LiFePO4 avec BMS Protection, Plus de 6000 Cycles, 3584Wh Batterie Lithium pour Camping-Car, Bateau, Système Solaire, Maison, Panneau Solaire',
     imageUrl: '/images/batterie.jpg',
     amazonLink: 'https://amzn.to/4liMPZo',
     category: 'Energie',
+    usage: ['Maison'],
     videoUrl: 'https://youtu.be/QxkUG6bzs7I'
   },
   {
@@ -125,6 +148,7 @@ export const products: Product[] = [
     imageUrl: '/images/sawyer-water-filter-1.jpg',
     amazonLink: 'https://amzn.to/47jfuHO',
     category: 'Alimentation',
+    usage: ['Bivouac'],
     videoUrl: 'https://www.youtube.com/shorts/yXcgoJJtyoY'
   },
   {
@@ -134,6 +158,7 @@ export const products: Product[] = [
     imageUrl: '/images/rue-barbare.jpg',
     amazonLink: 'https://amzn.to/3PnBZVQ',
     category: 'Lecture',
+    usage: ['Urbain', 'Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=W2ojY3Qw5_w'
   },
   {
@@ -143,6 +168,7 @@ export const products: Product[] = [
     imageUrl: '/images/pate.jpg',
     amazonLink: 'https://amzn.to/4uhZ2kY',
     category: 'Divers',
+    usage: ['Bivouac', 'Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=gkMXSr_ZG3g&t=578s'
   },
   {
@@ -152,6 +178,7 @@ export const products: Product[] = [
     imageUrl: '/images/Leau.jpg',
     amazonLink: 'https://amzn.to/4ud7DFP',
     category: 'Lecture',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/shorts/sFIQbk3fBGk'
   },
   {
@@ -161,6 +188,7 @@ export const products: Product[] = [
     imageUrl: '/images/merell.jpg',
     amazonLink: 'https://amzn.to/4lhTuTC',
     category: 'Divers',
+    usage: ['Bivouac', 'Urbain'],
     videoUrl: 'https://www.youtube.com/watch?v=mLFOX9Rs4kE'
   },
   {
@@ -170,6 +198,7 @@ export const products: Product[] = [
     imageUrl: '/images/Lchaillot-1.jpg',
     amazonLink: 'https://amzn.to/4buE6zU',
     category: 'Lecture',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=shDxHwS4H5s'
   },
   {
@@ -179,6 +208,7 @@ export const products: Product[] = [
     imageUrl: '/images/sacados.jpg',
     amazonLink: 'https://amzn.to/4bhieH2',
     category: 'Divers',
+    usage: ['Bivouac'],
     videoUrl: 'https://www.youtube.com/watch?v=1cTlsnusmsU'
   },
   {
@@ -188,6 +218,7 @@ export const products: Product[] = [
     imageUrl: '/images/blocporte.jpg',
     amazonLink: 'https://amzn.to/4blloJY',
     category: 'Divers',
+    usage: ['Urbain', 'Maison'],
     videoUrl: 'https://www.youtube.com/shorts/i6T69cakDdI'
   },
   {
@@ -197,33 +228,47 @@ export const products: Product[] = [
     imageUrl: '/images/victron.jpg',
     amazonLink: 'https://amzn.to/4bhP0Yt',
     category: 'Energie',
+    usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/shorts/t5f-7bHHw2o'
   },
   {
     id: '21',
-    title: 'Chariot d\'évacuation',
-    summary: 'Tu veux évacuer avec 30 kg sur le dos ? Mets tout dans le chariot Pliable 225 l à 150 kg avec Frein et Toit.',
-    imageUrl: '/images/chariot.jpg',
-    amazonLink: 'https://amzn.to/4rqvuPB',
-    category: 'Divers',
-    videoUrl: ''
+    title: 'Douche Solaire 20L',
+    summary: 'Sac de douche solaire portable pour le camping et les situations d\'urgence.',
+    imageUrl: '/images/douche-solaire.jpg',
+    amazonLink: 'https://amzn.to/3YxX8Xz',
+    category: 'Hygiène',
+    usage: ['Bivouac', 'Maison'],
+    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
   },
   {
     id: '22',
-    title: 'Réchaud à gaz',
-    summary: 'Sans électricité, comment faire à manger ?',
-    imageUrl: '/images/rechaud.jpg',
-    amazonLink: 'https://amzn.to/3PmiWvf',
-    category: 'Alimentation',
-    videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
+    title: 'Savon de mer Sea to Summit',
+    summary: 'Savon concentré biodégradable pour le corps et la vaisselle.',
+    imageUrl: '/images/savon-mer.jpg',
+    amazonLink: 'https://amzn.to/3YxX8Xz',
+    category: 'Hygiène',
+    usage: ['Bivouac'],
+    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
   },
   {
     id: '23',
-    title: 'Panneau solaire 400W',
-    summary: 'Pour recharger les générateurs et ta batterie de secours.',
-    imageUrl: '/images/panneau.jpg',
-    amazonLink: 'https://amzn.to/41ipHkj',
-    category: 'Energie',
-    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
+    title: 'Leatherman Wave+',
+    summary: 'Pince multifonction avec 18 outils essentiels.',
+    imageUrl: '/images/leatherman.jpg',
+    amazonLink: 'https://amzn.to/3YxX8Xz',
+    category: 'Outils',
+    usage: ['Tous'],
+    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
+  },
+  {
+    id: '24',
+    title: 'Scie pliante Bahco Laplander',
+    summary: 'Scie compacte et robuste pour le bois et les matériaux tendres.',
+    imageUrl: '/images/scie-bahco.jpg',
+    amazonLink: 'https://amzn.to/3YxX8Xz',
+    category: 'Outils',
+    usage: ['Bivouac', 'Maison'],
+    videoUrl: 'https://www.youtube.com/shorts/3_7_v_v_v_v'
   }
 ];

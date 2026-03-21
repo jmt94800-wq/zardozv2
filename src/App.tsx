@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { products, categories, Category, Product } from './data';
+import { products, categories, usages, Category, Usage, Product } from './data';
 
 function getYouTubeVideoInfo(url: string | undefined): { id: string; start?: string } | null {
   if (!url) return null;
@@ -34,24 +34,50 @@ export default function App() {
   const [activeVideo, setActiveVideo] = useState<{ id: string; start?: string } | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'category' | 'usage'>('category');
+  const [selectedFilter, setSelectedFilter] = useState<string>('All');
 
-  // Filter products based on search query
+  // Filter products based on search query and selected filter
   const filteredProducts = useMemo(() => {
-    if (!searchQuery.trim()) return products;
-    const query = searchQuery.toLowerCase();
-    return products.filter(
-      (p) =>
-        p.title.toLowerCase().includes(query) ||
-        p.summary.toLowerCase().includes(query)
-    );
-  }, [searchQuery]);
+    let result = products;
+    
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          p.summary.toLowerCase().includes(query)
+      );
+    }
 
-  // Filter out empty categories
-  const activeCategories = useMemo(() => {
-    return categories.filter((cat) =>
-      filteredProducts.some((p) => p.category === cat)
-    );
-  }, [filteredProducts]);
+    if (selectedFilter !== 'All') {
+      if (viewMode === 'category') {
+        result = result.filter(p => p.category === selectedFilter);
+      } else {
+        result = result.filter(p => p.usage.includes(selectedFilter as Usage) || p.usage.includes('Tous'));
+      }
+    }
+
+    return result;
+  }, [searchQuery, selectedFilter, viewMode]);
+
+  // Get active groups based on current view mode
+  const activeGroups = useMemo(() => {
+    if (viewMode === 'category') {
+      return categories.filter((cat) =>
+        filteredProducts.some((p) => p.category === cat)
+      );
+    } else {
+      return usages.filter((usage) =>
+        filteredProducts.some((p) => p.usage.includes(usage) || p.usage.includes('Tous'))
+      );
+    }
+  }, [filteredProducts, viewMode]);
+
+  useEffect(() => {
+    // Reset filter when switching view mode
+    setSelectedFilter('All');
+  }, [viewMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,34 +127,95 @@ export default function App() {
               </button>
             )}
           </div>
+
+          {/* View Mode & Filters */}
+          <div className="mt-12 flex flex-col gap-6">
+            <div className="flex justify-center gap-2 p-1 bg-stone-800/50 rounded-xl w-fit mx-auto border border-stone-700">
+              <button
+                onClick={() => setViewMode('category')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
+                  viewMode === 'category' 
+                    ? 'bg-emerald-600 text-white shadow-lg' 
+                    : 'text-stone-400 hover:text-stone-200'
+                }`}
+              >
+                Par Catégorie
+              </button>
+              <button
+                onClick={() => setViewMode('usage')}
+                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
+                  viewMode === 'usage' 
+                    ? 'bg-emerald-600 text-white shadow-lg' 
+                    : 'text-stone-400 hover:text-stone-200'
+                }`}
+              >
+                Par Usage
+              </button>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                onClick={() => setSelectedFilter('All')}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
+                  selectedFilter === 'All'
+                    ? 'bg-stone-50 border-stone-50 text-stone-900'
+                    : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-300'
+                }`}
+              >
+                Tous
+              </button>
+              {(viewMode === 'category' ? categories : usages).map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setSelectedFilter(item)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
+                    selectedFilter === item
+                      ? 'bg-stone-50 border-stone-50 text-stone-900'
+                      : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-300'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
-        {activeCategories.length === 0 ? (
+        {activeGroups.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-xl text-stone-500">Aucun équipement ne correspond à votre recherche.</p>
+            <p className="text-xl text-stone-500">Aucun équipement ne correspond à votre sélection.</p>
             <button 
-              onClick={() => setSearchQuery('')}
+              onClick={() => {
+                setSearchQuery('');
+                setSelectedFilter('All');
+              }}
               className="mt-4 text-emerald-600 font-semibold hover:underline"
             >
-              Effacer la recherche
+              Réinitialiser les filtres
             </button>
           </div>
         ) : (
-          activeCategories.map((category) => {
-            const categoryProducts = filteredProducts.filter((p) => p.category === category);
+          activeGroups.map((group) => {
+            const groupProducts = filteredProducts.filter((p) => 
+              viewMode === 'category' 
+                ? p.category === group 
+                : (p.usage.includes(group as Usage) || p.usage.includes('Tous'))
+            );
             
+            if (groupProducts.length === 0) return null;
+
             return (
-              <section key={category} id={`category-${category.toLowerCase()}`} className="mb-20 scroll-mt-8">
+              <section key={group} id={`group-${group.toLowerCase()}`} className="mb-20 scroll-mt-8">
                 <div className="flex items-center gap-4 mb-10">
-                  <h2 className="text-3xl font-bold uppercase tracking-wide text-stone-800">{category}</h2>
+                  <h2 className="text-3xl font-bold uppercase tracking-wide text-stone-800">{group}</h2>
                   <div className="h-px bg-stone-300 flex-1"></div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {categoryProducts.map((product) => (
+                  {groupProducts.map((product) => (
                     <ProductCard 
                       key={product.id} 
                       product={product} 
@@ -149,13 +236,13 @@ export default function App() {
           
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
-            {activeCategories.map((category) => (
+            {activeGroups.map((group) => (
               <a 
-                key={category} 
-                href={`#category-${category.toLowerCase()}`}
+                key={group} 
+                href={`#group-${group.toLowerCase()}`}
                 className="hover:text-stone-50 transition-colors uppercase text-sm font-semibold tracking-wider"
               >
-                {category}
+                {group}
               </a>
             ))}
           </div>
@@ -297,6 +384,18 @@ function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: 
         <h3 className="text-xl font-bold text-stone-900 mb-3 leading-tight">
           {product.title}
         </h3>
+        
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          <span className="px-2 py-0.5 bg-stone-100 text-stone-500 text-[10px] font-bold uppercase tracking-wider rounded border border-stone-200">
+            {product.category}
+          </span>
+          {product.usage.map((u) => (
+            <span key={u} className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider rounded border border-emerald-100">
+              {u}
+            </span>
+          ))}
+        </div>
+
         <p className="text-stone-600 mb-6 flex-1 text-sm leading-relaxed">
           {product.summary}
         </p>
