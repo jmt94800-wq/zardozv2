@@ -94,7 +94,7 @@ export const products: Product[] = [
   {
     id: 'p9',
     title: 'Lepro Lampe LED',
-    summary: ' Lampe Camping LED [Jusqu\'à 200h d\'éclairage ] , Lanterne Camping Puissante 1000lm, Alimentation par pile, Luminosité Réglable, Etanche, pour Camping, Bivouac, Pêche, Randonnée, Cave, 2pcs.',
+    summary: 'En cas de coupure du réseau électrique, l\'éclairage est extrêmement important.',
     imageUrl: '/images/lanterneLepro.jpg',
     amazonLink: 'https://amzn.to/4bwJ7YE',
     category: 'Eclairage',
@@ -112,7 +112,7 @@ export const products: Product[] = [
   {
     id: 'p11',
     title: 'ECO-WORTHY Bluetooth 280A',
-    summary: 'Batterie Lithium 12V 280AH LiFePO4 avec BMS Protection, Plus de 6000 Cycles, 3584Wh Batterie Lithium pour Camping-Car, Bateau, Système Solaire, Maison, Panneau Solaire',
+    summary: 'Batterie Lithium 12V 280AH LiFePO4 (Plus de 6000 Cycles) pour augmenter l\'autonomie des générateurs électrique.',
     imageUrl: '/images/batterie.jpg',
     amazonLink: 'https://amzn.to/4liMPZo',
     category: 'Energie',
@@ -202,10 +202,19 @@ export const products: Product[] = [
   {
     id: '21',
     title: 'Chariot d\'évacuation',
-    summary: 'Chariot Pliable XXL de 225 l à 150 kg avec Frein et Toit.',
+    summary: 'Tu veux évacuer avec 30 kg sur le dos ? Mets tout dans le chariot Pliable 225 l à 150 kg avec Frein et Toit.',
     imageUrl: '/images/chariot.jpg',
     amazonLink: 'https://amzn.to/4rqvuPB',
     category: 'Divers',
     videoUrl: ''
-  }
+  },
+  {
+    id: '22',
+    title: 'Réchaud à gaz',
+    summary: 'Sans électricité, comment faire à manger ?',
+    imageUrl: '/images/rechaud.jpg',
+    amazonLink: 'https://amzn.to/3PmiWvf',
+    category: 'Alimentation',
+    videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
+  }  
 ];
