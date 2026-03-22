@@ -280,5 +280,25 @@ export const products: Product[] = [
     category: 'Alimentation',
     usage: ['Maison'],
     videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
+  },
+  {
+    id: '26',
+    title: 'Filtre à eau British Berkefeld 6l',
+    summary: 'Un système de filtre à eau pour la famille, d\'exellente quatité en inox alimentaire.',
+    imageUrl: '/images/BB.jpg',
+    amazonLink: 'https://amzn.to/4lJBpxL',
+    category: 'Alimentation',
+    usage: ['Maison'],
+    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw'
+  },
+  {
+    id: '27',
+    title: 'Filtres pour filtre à eau British Berkefeld',
+    summary: 'Purifier son eau devient un jeu d'enfant.',
+    imageUrl: '/images/FiltreBB.jpg',
+    amazonLink: 'https://amzn.to/4lOvKGX',
+    category: 'Alimentation',
+    usage: ['Maison'],
+    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw'
   }
 ];
