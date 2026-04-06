@@ -294,7 +294,7 @@ export const products: Product[] = [
   {
     id: '27',
     title: 'Filtres pour filtre à eau British Berkefeld',
-    summary: 'Purifier son eau devient un jeu d'enfant.',
+    summary: 'Purifier son eau devient un jeu d\'enfant.',
     imageUrl: '/images/FiltreBB.jpg',
     amazonLink: 'https://amzn.to/4lOvKGX',
     category: 'Alimentation',

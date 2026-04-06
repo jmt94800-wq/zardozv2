@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play } from 'lucide-react';
+import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products, categories, usages, Category, Usage, Product } from './data';
 
@@ -36,6 +36,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'category' | 'usage'>('category');
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   // Filter products based on search query and selected filter
   const filteredProducts = useMemo(() => {
@@ -94,96 +95,191 @@ export default function App() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-sans selection:bg-emerald-200">
       {/* Header */}
-      <header className="bg-stone-900 text-stone-50 py-16 px-6 md:px-12 text-center relative overflow-hidden">
+      <header className="bg-stone-900 text-stone-50 pt-20 pb-24 px-6 md:px-12 text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 uppercase" style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}>
-            Zardoz équipement
-          </h1>
-          <p className="text-lg md:text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed font-medium mb-10">
-            Équipements civils pour l’autonomie et la résilience des foyers face aux crises du quotidien (pannes, intempéries, ruptures logistiques). 
-            <span className="block mt-2 text-emerald-400 font-semibold">100 % légaux – non militaires.</span>
-          </p>
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 uppercase leading-none" 
+            style={{ fontFamily: '"Space Grotesk", system-ui, sans-serif' }}
+          >
+            Zardoz
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed font-medium mb-0"
+          >
+            L’autonomie et la résilience face aux crises du quotidien. 
+            <span className="block mt-2 text-emerald-500 font-semibold">100 % légal – civil – non militaire.</span>
+          </motion.p>
+        </div>
+      </header>
 
-          {/* Search Bar */}
-          <div className="max-w-xl mx-auto relative">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-stone-400" />
+      {/* Sticky Filter Bar */}
+      <div className="sticky top-0 z-30 bg-stone-50/80 backdrop-blur-md border-b border-stone-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 flex flex-col md:flex-row items-center gap-4">
+          {/* Search */}
+          <div className="relative w-full md:max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-stone-400" />
             </div>
             <input
               type="text"
-              placeholder="Rechercher un équipement..."
+              placeholder="Rechercher..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-stone-800 border border-stone-700 text-stone-100 rounded-full py-3 pl-12 pr-12 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all placeholder:text-stone-500"
+              className="w-full bg-white border border-stone-200 text-stone-900 rounded-xl py-2 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-stone-400 hover:text-stone-200"
-                aria-label="Effacer la recherche"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             )}
           </div>
 
-          {/* View Mode & Filters */}
-          <div className="mt-12 flex flex-col gap-6">
-            <div className="flex justify-center gap-2 p-1 bg-stone-800/50 rounded-xl w-fit mx-auto border border-stone-700">
-              <button
-                onClick={() => setViewMode('category')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
-                  viewMode === 'category' 
-                    ? 'bg-emerald-600 text-white shadow-lg' 
-                    : 'text-stone-400 hover:text-stone-200'
-                }`}
-              >
-                Par Catégorie
-              </button>
-              <button
-                onClick={() => setViewMode('usage')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
-                  viewMode === 'usage' 
-                    ? 'bg-emerald-600 text-white shadow-lg' 
-                    : 'text-stone-400 hover:text-stone-200'
-                }`}
-              >
-                Par Usage
-              </button>
-            </div>
+          {/* View Mode Toggle */}
+          <div className="flex items-center gap-1 p-1 bg-stone-100 rounded-xl border border-stone-200 w-full md:w-auto">
+            <button
+              onClick={() => setViewMode('category')}
+              className={`flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                viewMode === 'category' 
+                  ? 'bg-white text-stone-900 shadow-sm border border-stone-200' 
+                  : 'text-stone-500 hover:text-stone-700'
+              }`}
+            >
+              Catégories
+            </button>
+            <button
+              onClick={() => setViewMode('usage')}
+              className={`flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                viewMode === 'usage' 
+                  ? 'bg-white text-stone-900 shadow-sm border border-stone-200' 
+                  : 'text-stone-500 hover:text-stone-700'
+              }`}
+            >
+              Usages
+            </button>
+          </div>
 
-            <div className="flex flex-wrap justify-center gap-2">
+          {/* Horizontal Scroll Filters (Desktop) / Filter Button (Mobile) */}
+          <div className="hidden md:flex flex-1 overflow-x-auto no-scrollbar gap-2 py-1">
+            <button
+              onClick={() => setSelectedFilter('All')}
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
+                selectedFilter === 'All'
+                  ? 'bg-stone-900 border-stone-900 text-white'
+                  : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400 hover:text-stone-700'
+              }`}
+            >
+              Tous
+            </button>
+            {(viewMode === 'category' ? categories : usages).map((item) => (
               <button
-                onClick={() => setSelectedFilter('All')}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
-                  selectedFilter === 'All'
-                    ? 'bg-stone-50 border-stone-50 text-stone-900'
-                    : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-300'
+                key={item}
+                onClick={() => setSelectedFilter(item)}
+                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
+                  selectedFilter === item
+                    ? 'bg-stone-900 border-stone-900 text-white'
+                    : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400 hover:text-stone-700'
                 }`}
               >
-                Tous
+                {item}
               </button>
-              {(viewMode === 'category' ? categories : usages).map((item) => (
-                <button
-                  key={item}
-                  onClick={() => setSelectedFilter(item)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border transition-all ${
-                    selectedFilter === item
-                      ? 'bg-stone-50 border-stone-50 text-stone-900'
-                      : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-300'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+            ))}
+          </div>
+
+          {/* Mobile Filter Button */}
+          <div className="flex items-center gap-2 w-full md:w-auto">
+            <button 
+              onClick={() => setIsFilterModalOpen(true)}
+              className="flex-1 md:hidden py-2.5 bg-stone-900 text-white rounded-xl font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2"
+            >
+              <Filter size={16} />
+              <span>Filtrer</span>
+              <span className="bg-emerald-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                {selectedFilter === 'All' ? 'Tous' : selectedFilter}
+              </span>
+            </button>
+            <div className="hidden md:flex items-center px-3 py-1.5 bg-stone-100 rounded-full border border-stone-200 text-[10px] font-bold text-stone-500 uppercase tracking-wider whitespace-nowrap">
+              {filteredProducts.length} Produits
+            </div>
+            {/* Mobile Count */}
+            <div className="md:hidden flex items-center px-3 py-2.5 bg-stone-100 rounded-xl border border-stone-200 text-[10px] font-bold text-stone-500 uppercase tracking-wider whitespace-nowrap">
+              {filteredProducts.length}
             </div>
           </div>
         </div>
-      </header>
+      </div>
+
+      {/* Mobile Filter Modal */}
+      <AnimatePresence>
+        {isFilterModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm md:hidden"
+            onClick={() => setIsFilterModalOpen(false)}
+          >
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-6 max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-bold uppercase tracking-tight">Filtres</h3>
+                <button onClick={() => setIsFilterModalOpen(false)} className="p-2 bg-stone-100 rounded-full">
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => {
+                    setSelectedFilter('All');
+                    setIsFilterModalOpen(false);
+                  }}
+                  className={`py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-wider border text-center transition-all ${
+                    selectedFilter === 'All'
+                      ? 'bg-stone-900 border-stone-900 text-white'
+                      : 'bg-stone-50 border-stone-200 text-stone-600'
+                  }`}
+                >
+                  Tous
+                </button>
+                {(viewMode === 'category' ? categories : usages).map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      setSelectedFilter(item);
+                      setIsFilterModalOpen(false);
+                    }}
+                    className={`py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-wider border text-center transition-all ${
+                      selectedFilter === item
+                        ? 'bg-stone-900 border-stone-900 text-white'
+                        : 'bg-stone-50 border-stone-200 text-stone-600'
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+      <main className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
         {activeGroups.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-stone-500">Aucun équipement ne correspond à votre sélection.</p>
@@ -390,7 +486,11 @@ function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: 
             {product.category}
           </span>
           {product.usage.map((u) => (
-            <span key={u} className="px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider rounded border border-emerald-100">
+            <span key={u} className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded border ${
+              u === 'Tous' 
+                ? 'bg-stone-100 text-stone-500 border-stone-200' 
+                : 'bg-emerald-50 text-emerald-700 border-emerald-100'
+            }`}>
               {u}
             </span>
           ))}
