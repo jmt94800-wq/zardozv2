@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
-import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play, Filter } from 'lucide-react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { ExternalLink, ZoomIn, X, ChevronUp, Search, Play, Filter, Star, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { products, categories, usages, Category, Usage, Product } from './data';
+import { products as initialProducts, categories, usages, Category, Usage, Product } from './data';
 
 function getYouTubeVideoInfo(url: string | undefined): { id: string; start?: string } | null {
   if (!url) return null;
@@ -30,6 +30,7 @@ function getYouTubeVideoInfo(url: string | undefined): { id: string; start?: str
 }
 
 export default function App() {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [activeVideo, setActiveVideo] = useState<{ id: string; start?: string } | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -37,6 +38,39 @@ export default function App() {
   const [viewMode, setViewMode] = useState<'category' | 'usage'>('category');
   const [selectedFilter, setSelectedFilter] = useState<string>('All');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  // Sync Amazon data
+  const syncAmazonData = useCallback(async () => {
+    setIsSyncing(true);
+    const updatedProducts = [...products];
+    
+    // We sync products one by one to avoid overwhelming the server/Amazon
+    for (let i = 0; i < updatedProducts.length; i++) {
+      const product = updatedProducts[i];
+      try {
+        const response = await fetch(`/api/sync-amazon?url=${encodeURIComponent(product.amazonLink)}`);
+        const data = await response.json();
+        
+        if (data.success) {
+          if (data.price) updatedProducts[i].price = data.price;
+          if (data.rating) updatedProducts[i].rating = data.rating;
+          // Update state incrementally for better UX
+          setProducts([...updatedProducts]);
+        }
+      } catch (error) {
+        console.error(`Failed to sync ${product.title}:`, error);
+      }
+      // Add a small delay between requests
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    setIsSyncing(false);
+  }, [products]);
+
+  useEffect(() => {
+    // Sync on initial load
+    syncAmazonData();
+  }, []); // Only once on mount
 
   // Filter products based on search query and selected filter
   const filteredProducts = useMemo(() => {
@@ -213,6 +247,22 @@ export default function App() {
             <div className="md:hidden flex items-center px-3 py-2.5 bg-stone-100 rounded-xl border border-stone-200 text-[10px] font-bold text-stone-500 uppercase tracking-wider whitespace-nowrap">
               {filteredProducts.length}
             </div>
+            {/* Sync Status */}
+            <button 
+              onClick={syncAmazonData}
+              disabled={isSyncing}
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border transition-all ${
+                isSyncing 
+                  ? 'bg-stone-100 border-stone-200 text-stone-400' 
+                  : 'bg-white border-stone-200 text-stone-600 hover:border-emerald-500 hover:text-emerald-600'
+              }`}
+              title="Synchroniser avec Amazon"
+            >
+              <RefreshCw size={16} className={isSyncing ? 'animate-spin' : ''} />
+              <span className="hidden lg:inline text-[10px] font-bold uppercase tracking-wider">
+                {isSyncing ? 'Mise à jour...' : 'Actualiser'}
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -473,13 +523,28 @@ function ProductCard({ product, onZoom, onPlayVideo }: { key?: string, product: 
             <ZoomIn size={24} />
           </div>
         </div>
+        
+        {/* Price Badge */}
+        {product.price && (
+          <div className="absolute top-4 right-4 bg-stone-900 text-white px-3 py-1.5 rounded-lg font-bold text-sm shadow-lg z-10">
+            {product.price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+          </div>
+        )}
       </div>
 
       {/* Content Container */}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-stone-900 mb-3 leading-tight">
-          {product.title}
-        </h3>
+        <div className="flex justify-between items-start mb-2 gap-2">
+          <h3 className="text-xl font-bold text-stone-900 leading-tight">
+            {product.title}
+          </h3>
+          {product.rating && (
+            <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-md border border-amber-100 shrink-0">
+              <Star size={14} className="fill-amber-400 text-amber-400" />
+              <span className="text-xs font-bold text-amber-700">{product.rating}</span>
+            </div>
+          )}
+        </div>
         
         <div className="flex flex-wrap gap-1.5 mb-4">
           <span className="px-2 py-0.5 bg-stone-100 text-stone-500 text-[10px] font-bold uppercase tracking-wider rounded border border-stone-200">

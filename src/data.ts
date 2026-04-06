@@ -10,6 +10,8 @@ export interface Product {
   category: Category;
   usage: Usage[];
   videoUrl?: string;
+  rating?: number;
+  price?: number;
 }
 
 export const categories: Category[] = [
@@ -39,7 +41,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4sxGqMg',
     category: 'Energie',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/Aa2BK6vcBzA'
+    videoUrl: 'https://www.youtube.com/shorts/Aa2BK6vcBzA',
+    rating: 4.6,
+    price: 69.99
   },
   {
     id: 'p2',
@@ -49,7 +53,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4rltIPJ',
     category: 'Energie',
     usage: ['Urbain', 'Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/L6SzFPsrr5c'
+    videoUrl: 'https://www.youtube.com/shorts/L6SzFPsrr5c',
+    rating: 4.8,
+    price: 249.00
   },
   {
     id: 'p3',
@@ -59,7 +65,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4rhLO5a',
     category: 'Eclairage',
     usage: ['Bivouac', 'Urbain'],
-    videoUrl: 'https://www.youtube.com/shorts/hNM58qB3q84'
+    videoUrl: 'https://www.youtube.com/shorts/hNM58qB3q84',
+    rating: 4.5,
+    price: 39.95
   },
   {
     id: 'p4',
@@ -69,7 +77,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/46RmnjA',
     category: 'Communication',
     usage: ['Maison', 'Bivouac'],
-    videoUrl: 'https://www.youtube.com/shorts/ViSxS2_9BjA'
+    videoUrl: 'https://www.youtube.com/shorts/ViSxS2_9BjA',
+    rating: 4.4,
+    price: 45.99
   },
   {
     id: 'p5',
@@ -79,7 +89,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3P5bpAL',
     category: 'Alimentation',
     usage: ['Maison', 'Bivouac'],
-    videoUrl: 'https://www.youtube.com/shorts/yHoDRjm5YKw'
+    videoUrl: 'https://www.youtube.com/shorts/yHoDRjm5YKw',
+    rating: 4.7,
+    price: 89.00
   },
   {
     id: 'p6',
@@ -89,7 +101,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4aY8l1X',
     category: 'Alimentation',
     usage: ['Bivouac', 'Urbain'],
-    videoUrl: 'https://www.youtube.com/shorts/w_3D3_Cu7fo'
+    videoUrl: 'https://www.youtube.com/shorts/w_3D3_Cu7fo',
+    rating: 4.9,
+    price: 109.95
   },
   {
     id: 'p7',
@@ -99,7 +113,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/46ONcEX',
     category: 'Lecture',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=tsYORZrfbRU'
+    videoUrl: 'https://www.youtube.com/watch?v=tsYORZrfbRU',
+    rating: 4.6,
+    price: 22.00
   },
   {
     id: 'p8',
@@ -109,7 +125,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4aXDhiX',
     category: 'Divers',
     usage: ['Tous'],
-    videoUrl: 'https://www.youtube.com/watch?v=r829HNMfq5M'
+    videoUrl: 'https://www.youtube.com/watch?v=r829HNMfq5M',
+    rating: 4.7,
+    price: 29.99
   },
   {
     id: 'p9',
@@ -119,7 +137,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4bwJ7YE',
     category: 'Eclairage',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=Mjur5mgo4yk'
+    videoUrl: 'https://www.youtube.com/watch?v=Mjur5mgo4yk',
+    rating: 4.6,
+    price: 25.99
   },
   {
     id: 'p10',
@@ -129,7 +149,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3Nqds1R',
     category: 'Energie',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/Fra8mGcbMOg'
+    videoUrl: 'https://www.youtube.com/shorts/Fra8mGcbMOg',
+    rating: 4.8,
+    price: 1299.00
   },
   {
     id: 'p11',
@@ -139,7 +161,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4liMPZo',
     category: 'Energie',
     usage: ['Maison'],
-    videoUrl: 'https://youtu.be/QxkUG6bzs7I'
+    videoUrl: 'https://youtu.be/QxkUG6bzs7I',
+    rating: 4.5,
+    price: 650.00
   },
   {
     id: 'p12',
@@ -149,7 +173,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/47jfuHO',
     category: 'Alimentation',
     usage: ['Bivouac'],
-    videoUrl: 'https://www.youtube.com/shorts/yXcgoJJtyoY'
+    videoUrl: 'https://www.youtube.com/shorts/yXcgoJJtyoY',
+    rating: 4.7,
+    price: 29.90
   },
   {
     id: 'p13',
@@ -159,7 +185,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3PnBZVQ',
     category: 'Lecture',
     usage: ['Urbain', 'Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=W2ojY3Qw5_w'
+    videoUrl: 'https://www.youtube.com/watch?v=W2ojY3Qw5_w',
+    rating: 4.6,
+    price: 19.00
   },
   {
     id: 'p14',
@@ -169,7 +197,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4uhZ2kY',
     category: 'Divers',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=gkMXSr_ZG3g&t=578s'
+    videoUrl: 'https://www.youtube.com/watch?v=gkMXSr_ZG3g&t=578s',
+    rating: 4.5,
+    price: 24.50
   },
   {
     id: 'p15',
@@ -179,7 +209,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4ud7DFP',
     category: 'Lecture',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/sFIQbk3fBGk'
+    videoUrl: 'https://www.youtube.com/shorts/sFIQbk3fBGk',
+    rating: 4.8,
+    price: 18.00
   },
   {
     id: '16',
@@ -189,7 +221,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4lhTuTC',
     category: 'Divers',
     usage: ['Bivouac', 'Urbain'],
-    videoUrl: 'https://www.youtube.com/watch?v=mLFOX9Rs4kE'
+    videoUrl: 'https://www.youtube.com/watch?v=mLFOX9Rs4kE',
+    rating: 4.6,
+    price: 95.00
   },
   {
     id: '17',
@@ -199,7 +233,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4buE6zU',
     category: 'Lecture',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=shDxHwS4H5s'
+    videoUrl: 'https://www.youtube.com/watch?v=shDxHwS4H5s',
+    rating: 4.7,
+    price: 25.00
   },
   {
     id: '18',
@@ -209,7 +245,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4bhieH2',
     category: 'Divers',
     usage: ['Bivouac'],
-    videoUrl: 'https://www.youtube.com/watch?v=1cTlsnusmsU'
+    videoUrl: 'https://www.youtube.com/watch?v=1cTlsnusmsU',
+    rating: 4.4,
+    price: 49.99
   },
   {
     id: '19',
@@ -219,7 +257,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4blloJY',
     category: 'Divers',
     usage: ['Urbain', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/i6T69cakDdI'
+    videoUrl: 'https://www.youtube.com/shorts/i6T69cakDdI',
+    rating: 4.3,
+    price: 12.99
   },
   {
     id: '20',
@@ -229,7 +269,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4bhP0Yt',
     category: 'Energie',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/t5f-7bHHw2o'
+    videoUrl: 'https://www.youtube.com/shorts/t5f-7bHHw2o',
+    rating: 4.9,
+    price: 145.00
   },
   {
     id: '21',
@@ -239,7 +281,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3Pgn1RN',
     category: 'Hygiène',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=5Waa_5Qe4hI'
+    videoUrl: 'https://www.youtube.com/watch?v=5Waa_5Qe4hI',
+    rating: 4.5,
+    price: 35.00
   },
   {
     id: '22',
@@ -249,7 +293,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/41ipHkj',
     category: 'Energie',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA'
+    videoUrl: 'https://www.youtube.com/shorts/ahsgvW8M4cA',
+    rating: 4.6,
+    price: 399.00
   },
   {
     id: '23',
@@ -259,7 +305,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4ss54hK',
     category: 'Outils',
     usage: ['Tous'],
-    videoUrl: 'https://www.youtube.com/shorts/gQCkQbkHx6E'
+    videoUrl: 'https://www.youtube.com/shorts/gQCkQbkHx6E',
+    rating: 4.8,
+    price: 149.00
   },
   {
     id: '24',
@@ -269,7 +317,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4lJBpxL',
     category: 'Outils',
     usage: ['Bivouac', 'Maison'],
-    videoUrl: 'https://www.youtube.com/shorts/hczCV27fdlU'
+    videoUrl: 'https://www.youtube.com/shorts/hczCV27fdlU',
+    rating: 4.9,
+    price: 29.90
   },
   {
     id: '25',
@@ -279,7 +329,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/3PmiWvf',
     category: 'Alimentation',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU'
+    videoUrl: 'https://www.youtube.com/watch?v=3s2PebUPtuU',
+    rating: 4.6,
+    price: 35.00
   },
   {
     id: '26',
@@ -289,7 +341,9 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4lJBpxL',
     category: 'Alimentation',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw'
+    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw',
+    rating: 4.8,
+    price: 280.00
   },
   {
     id: '27',
@@ -299,6 +353,8 @@ export const products: Product[] = [
     amazonLink: 'https://amzn.to/4lOvKGX',
     category: 'Alimentation',
     usage: ['Maison'],
-    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw'
+    videoUrl: 'https://www.youtube.com/watch?v=emxDhrU_8yw',
+    rating: 4.7,
+    price: 75.00
   }
 ];
